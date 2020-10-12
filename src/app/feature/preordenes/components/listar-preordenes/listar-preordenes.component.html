@@ -1,0 +1,47 @@
+
+<div class="card">
+  <div class="card-header">Ingresa tu identificación para consultar tus preordenes</div>
+  <div class="card-body">
+    <form (ngSubmit) = "listarPreordenes()" class="form-inline my-2 my-lg-0" #clienteForm="ngForm">
+      <input class="form-control mr-sm-2" [(ngModel)] = "idCliente" name="idCliente" id="idCliente" type="search" placeholder="IdCliente" aria-label="search" required #idC="ngModel">
+      <div class="alert alert-danger" *ngIf="idC.invalid && (idC.dirty || idC.touched)">
+        <div *ngIf="idC.errors.required">
+          La identificación del cliente es requerida
+        </div>
+      </div>
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="btnConsultaPreordenes" [disabled]="!clienteForm.form.valid">Preordenes</button>
+    </form>
+  </div>
+</div>
+
+<div class="card">
+  <h5 class="card-header">Tus preordenes!!</h5>
+  <div class="card-body">
+    <h5 class="card-title">Listado de preordenes</h5>
+      <table class="table table-bordered table-striped" >
+        <thead>
+          <th>Id</th>
+          <th>Figura</th>
+          <th>Marca</th>
+          <th>Fecha de Lanzamiento</th>
+          <th>Fecha de Llegada</th>
+          <th>Fecha de Preorden</th>
+          <th>Precio</th>
+          <th>Acciones</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let preorden of preordenes" [attr.name] = "'Preorden'">
+            <td>{{ preorden.id }}</td>
+            <td>{{ preorden.figura.nombre }}</td>
+            <td>{{ preorden.figura.marca }}</td>
+            <td>{{ preorden.figura.fechaLanzamiento }}</td>
+            <td>{{ preorden.figura.fechaLlegada }}</td>
+            <td>{{ preorden.fechaPreorden }}</td>
+            <td>{{ preorden.precioPreorden }}</td>
+            <td *ngIf="preorden.puedeCancelarPreorden"><button class="btn btn-rounded btn-danger" type="button" (click)='delete(preorden)'>Cancelar</button></td>
+          </tr>
+        </tbody>
+     </table>
+  </div>
+</div>
+

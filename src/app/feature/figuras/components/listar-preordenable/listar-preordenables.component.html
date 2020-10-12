@@ -1,0 +1,29 @@
+<div class="card">
+  <h5 class="card-header">Figuras disponibles para Preordenar!!</h5>
+  <div class="card-body">
+    <h5 class="card-title">Listado de figuras</h5>
+      <table class="table table-bordered table-striped">
+        <thead>
+          <th>Id</th>
+          <th>Nombre</th>
+          <th>Marca</th>
+          <th>Fecha de Lanzamiento</th>
+          <th>Fecha de Llegada</th>
+          <th>Precio</th>
+          <th>Acciones</th>
+        </thead>
+        <tbody id="bodyFiguras">
+          <tr *ngFor="let figura of figuras" [attr.name] = "'FiguraPre'">
+            <td>{{ figura.id }}</td>
+            <td>{{ figura.nombre }}</td>
+            <td>{{ figura.marca }}</td>
+            <td>{{ figura.fechaLanzamiento }}</td>
+            <td>{{ figura.fechaLlegada }}</td>
+            <td>{{ figura.precio }}</td>
+            <th><button class="btn btn-rounded btn-primary" type="button" [routerLink] = "['/cliente/form', figura.id]">Preordenar</button></th>
+          </tr>
+        </tbody>
+     </table>
+  </div>
+</div>
+
